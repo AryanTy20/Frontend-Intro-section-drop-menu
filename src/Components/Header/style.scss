@@ -1,0 +1,214 @@
+@use "../../colors" as *;
+
+.header {
+  padding: 1em;
+  display: flex;
+  align-items: center;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(-10%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes smooth {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .overlay {
+    animation: smooth 0.3s;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    padding: 10em;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 8;
+  }
+
+  .menu {
+    margin: 0 3em;
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $MediumGray;
+
+    li {
+      display: flex;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+      transition: color 0.3s;
+      &:hover:not(:nth-child(1), :nth-child(2)) {
+        color: $AlmostBlack;
+      }
+      &:not(:first-child) {
+        margin-left: 2em;
+      }
+      .dropmenu {
+        span {
+          display: flex;
+          align-items: center;
+          svg {
+            margin: 0 0.2em;
+            stroke: $MediumGray;
+          }
+          &:hover svg {
+            stroke: $AlmostBlack;
+          }
+          &:hover {
+            transition: color 0.3s;
+            color: $AlmostBlack;
+          }
+        }
+
+        .out {
+          animation: fade 0.3s forwards;
+          position: absolute;
+          left: -90%;
+          top: 200%;
+          padding: 0em 1em;
+          border-radius: 0.5em;
+          box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+          min-width: 7em;
+          background-color: white;
+
+          p {
+            margin: 1em 0;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s;
+            &:hover {
+              color: $AlmostBlack;
+            }
+
+            img {
+              margin-right: 0.8em;
+            }
+          }
+        }
+      }
+    }
+  }
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -110%;
+    width: 60vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 9;
+    padding-top: 2em;
+    isolation: isolate;
+    color: $MediumGray;
+    transition: all 0.3s;
+    user-select: none;
+
+    li {
+      margin: 1.5em;
+      cursor: pointer;
+      transition: color 0.3s;
+      &:is(:hover, :active):not(:nth-child(1), :nth-child(2)) {
+        color: $AlmostBlack;
+      }
+      .dropmenu {
+        span {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          svg {
+            margin: 0 0 0 1em;
+            stroke: $MediumGray;
+          }
+          &:hover svg {
+            stroke: $AlmostBlack;
+          }
+          &:hover {
+            transition: color 0.3s;
+            color: $AlmostBlack;
+          }
+        }
+
+        .out {
+          animation: smooth 0.3s forwards;
+          padding-left: 1.5em;
+          p {
+            margin: 1em 0;
+            transition: color 0.3s;
+            &:hover {
+              color: $AlmostBlack;
+            }
+
+            img {
+              margin-right: 0.8em;
+            }
+          }
+        }
+      }
+    }
+  }
+  .mobile-menu[active="true"] {
+    right: 0;
+  }
+
+  .auth {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: $MediumGray;
+      cursor: pointer;
+      transition: color 0.3s;
+      &:hover {
+        color: $AlmostBlack;
+      }
+    }
+
+    button {
+      margin-left: 2em;
+      background-color: transparent;
+      border: 0;
+      color: $MediumGray;
+      border: solid $MediumGray 2px;
+      border-radius: 0.8em;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.7em 1.2em;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        color: $AlmostBlack;
+        border-color: $AlmostBlack;
+      }
+    }
+  }
+
+  .ham {
+    margin-left: auto;
+    height: 1.5em;
+    width: fit-content;
+    cursor: pointer;
+    z-index: 10;
+  }
+}
